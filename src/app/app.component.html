@@ -1,0 +1,24 @@
+<mat-toolbar >
+  <mat-toolbar-row>
+    <span class="title">pdf view and search</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <div class="select-file__container">
+      <input (change)="onFileSelected()" type="file" id="file">
+    </div>
+
+    <div class="mb">
+      <mat-form-field>
+        <input #queryInp matInput id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
+          (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
+        <mat-hint>Search in entire pdf</mat-hint>
+      </mat-form-field>
+    </div>
+  </mat-drawer>
+
+  <pdf-viewer [src]="pdfSrc" ></pdf-viewer>
+  
+</mat-drawer-container>
