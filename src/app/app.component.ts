@@ -17,7 +17,7 @@ import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 export class AppComponent {
   pdfSrc: string | PDFSource | ArrayBuffer = '';
 
-  
+
 
   renderText = true;
   isOutlineShown = true;
@@ -26,7 +26,7 @@ export class AppComponent {
   @ViewChild(PdfViewerComponent)
   private pdfComponent: PdfViewerComponent;
 
-  
+
   onFileSelected() {
     const $pdf: any = document.querySelector('#file');
 
@@ -44,14 +44,13 @@ export class AppComponent {
     if (newQuery !== this.pdfQuery) {
       this.pdfQuery = newQuery;
       this.pdfComponent.pdfFindController.executeCommand('find', {
-        query: this.pdfQuery,
-        highlightAll: true
-      });
-    } else {
-      this.pdfComponent.pdfFindController.executeCommand('findagain', {
-        query: this.pdfQuery,
-        highlightAll: true
+        caseSensitive: false,
+        findPrevious: false,
+        highlightAll: true,
+        phraseSearch: true,
+        query: this.pdfQuery
+
       });
     }
+    }
   }
-}
